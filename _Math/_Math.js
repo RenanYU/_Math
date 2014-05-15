@@ -4,6 +4,7 @@ var _Math = (function(){
 		var div = [];
 		switch(typeof object){
 			case 'object':
+				console.info("Comming Soon");
 				break;
 			case 'integer':
 			case 'number':
