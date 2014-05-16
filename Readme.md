@@ -2,9 +2,9 @@ _Math
 =======
 
 ----------
-**English**
+***English***
 
-> This object was created to add functions that the object Math doesn't have
+> This object was created to add functions that the object Math doesn't have. Think about the two question below.
 
 > Have you ever needed to distribute an quantity into three, four or more parts equal?
 
@@ -20,12 +20,22 @@ _Math
 
 >   **_Math.setDistribution(*quantity*, *groups*);**
 
->   The parameter groups can be an integer like 3. But in future you will be able to pass an array of percentage.
+>   The parameter groups can be an integer like 3 or an array of percentage like [10,20,30,40]. If the sum of the all percentage is not equal to 100, the object will show an error on the console.
+
+>   All function that it has, it will be listed below.
+
+>       1. setDistribution(value, groups);
+>       2. sum(params, precision);
+>       3. applyDiscount(value, discount);
+>       4. getDiscount(oldValue, newValue);
+>       5. getFullValue(currentValue,discountApplied);
 
 
-**Português**
+----------
 
-> Este objeto foi criado para adicionar funções que o objeto Math não tem.
+***Português***
+
+> Este objeto foi criado para adicionar funções que o objeto Math não tem. Pensei sobre as duas perguntas abaixo.
 
 > Você já teve que distribuir uma quantidade em três, quatro ou mais parte iguais?
 
@@ -41,4 +51,12 @@ _Math
 
 > **_Math.setDistribution(*quantidade*,*grupos*);**
 
-> O parametro grupos pode ser um inteiro como 3. Porém no futuro você poderá passar um array de porcentagem.
+> O parametro grupos pode ser um inteiro como 3 ou um array de porcentagem como [10,20,30,40]. Se a soma das porcentagens não for igual a 100, o objeto mostrará um erro no console.
+
+>   Todas as função que possui, será listada abaixo.
+
+>       1. setDistribution(value, groups);
+>       2. sum(params, precision);
+>       3. applyDiscount(value, discount);
+>       4. getDiscount(oldValue, newValue);
+>       5. getFullValue(currentValue,discountApplied);

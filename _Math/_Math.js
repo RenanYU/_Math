@@ -4,7 +4,17 @@ var _Math = (function(){
 		var div = [];
 		switch(typeof object){
 			case 'object':
-				console.info("Comming Soon");
+				var percentSUM = 0;
+				for(var x in object){
+					percentSUM += parseFloat(object[x]);
+					div.push(parseFloat(((value * object[x])/100).toFixed(2)));
+				}
+				if(percentSUM != 100){
+					console.error("The sum of the percentages is not equal to 100%");
+					console.error("A soma das porcentagens não é igual a 100%");
+					return false;
+				}
+				return div;
 				break;
 			case 'integer':
 			case 'number':
@@ -60,7 +70,24 @@ var _Math = (function(){
 				sum += parseFloat(params[x]);
 			}
 		}
+		if(isNaN(sum)){
+			console.error("An error has occurred when sum function was executed! Parameters types different!");
+			console.error("Ocorreu um erro quando a função sum foi executada! Tipos de parametros diferentes!");
+			return false;
+		}
 		return parseFloat(sum.toFixed(decP))	;
+	});
+
+	var callApplyDiscount = (function(value, discount){
+		return parseFloat((value * ((100 - discount)/100)).toFixed(2));
+	});
+
+	var callDiscount = (function(value1, value2){
+		return parseFloat((Math.abs(value1 - value2)/value1).toFixed(6));
+	});
+
+	var callFullValue = (function(currentValue, discount){
+		return parseFloat(((currentValue * 100)/(100 - discount)).toFixed(2));
 	});
 
 	return {
@@ -69,6 +96,15 @@ var _Math = (function(){
 		}),
 		sum: (function(params, precision){
 			return arrSum(params,precision);
+		}),
+		applyDiscount: (function(value, discount){
+			return callApplyDiscount(value, discount);
+		}),
+		getDiscount: (function(oldValue, newValue){
+			return callDiscount(oldValue, newValue);
+		}),
+		getFullValue: (function(currentValue, discount){
+			return callFullValue(currentValue, discount);
 		})
 	}
 })();
