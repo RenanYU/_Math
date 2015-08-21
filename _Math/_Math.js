@@ -1,13 +1,15 @@
 var _Math = (function(){
 
-	var distribution = (function(value, object){
+	var distribution = (function ( value, object ) {
 		var div = [];
-		switch(typeof object){
+		switch ( typeof object ) {
 			case 'object':
 				var percentSUM = 0;
-				for(var x in object){
-					percentSUM += parseFloat(object[x]);
-					div.push(parseFloat(((value * object[x])/100).toFixed(2)));
+				for ( var x in object ) {
+					if ( typeof object[x] != "function"){
+						console.info(parseFloat(((value * object[x])/100).toFixed(2)));
+						div.push(parseFloat(((value * object[x])/100).toFixed(2)));
+					}
 				}
 				if(percentSUM != 100){
 					console.error("The sum of the percentages is not equal to 100%");
@@ -19,17 +21,17 @@ var _Math = (function(){
 			case 'integer':
 			case 'number':
 				var decpoint = 0;
-				if(value.toString().indexOf(".") != -1){
+				if ( value.toString().indexOf(".") != -1 ) {
 					decpoint = (value.toString().length-1)-value.toString().indexOf('.');
 				}
 				var diff = (value * Math.pow(10,decpoint)) % object;
-				for(var i = 0; i < object ; i++){
+				for ( var i = 0; i < object ; i++ ) {
 					var result = value * Math.pow(10,decpoint);
-					if(diff != 0){
+					if ( diff != 0 ) {
 						var calculo = Math.ceil(result/object);
 						div.push((calculo /  Math.pow(10,decpoint)));
 						diff -= 1;
-					}else{
+					} else {
 						var calculo = Math.floor(result/object);
 						div.push((calculo /  Math.pow(10,decpoint)));
 					}
@@ -39,18 +41,18 @@ var _Math = (function(){
 		return div;
 	});
 
-	var arrSum = (function(params,precision){
+	var arrSum = (function ( params, precision ) {
 		var sum = 0;
 		var autoDetermine = false;
 		var decP;
-		if(precision == null){
+		if ( precision == null ) {
 			decP = 0
 			autoDetermine = true;
-		}else{
+		} else {
 			decP = precision;
 		}
-		if(typeof params.length == "undefined"){
-			for(var x in params){
+		if ( typeof params.length == "undefined" ) {
+			for ( var x in params ) {
 				if(params[x].toString().indexOf(".") != -1 && autoDetermine){
 					decpoint = (params[x].toString().length-1)-params[x].toString().indexOf('.');
 					if(decpoint > decP){
@@ -59,7 +61,7 @@ var _Math = (function(){
 				}
 				sum += parseFloat(params[x]);
 			}
-		}else{
+		} else {
 			for(var x in params){
 				if(params[x].toString().indexOf(".") != -1 && autoDetermine){
 					decpoint = (params[x].toString().length-1)-params[x].toString().indexOf('.');
@@ -70,7 +72,7 @@ var _Math = (function(){
 				sum += parseFloat(params[x]);
 			}
 		}
-		if(isNaN(sum)){
+		if ( isNaN(sum) ) {
 			console.error("An error has occurred when sum function was executed! Parameters types different!");
 			console.error("Ocorreu um erro quando a função sum foi executada! Tipos de parametros diferentes!");
 			return false;
